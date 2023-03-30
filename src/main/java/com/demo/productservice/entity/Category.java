@@ -7,4 +7,8 @@ public class Category {
     private Integer id;
     private String categoryName;
     private LocalDate creationDate;
+
+//    private List<Product> products;
+
+
 }
