@@ -32,6 +32,10 @@ build/
 ### VS Code ###
 .vscode/
 
-# Spring
+### Spring ###
 .mvn/
+
+### database ###
+database/pgadmin/
+database/postgres_data/
 
