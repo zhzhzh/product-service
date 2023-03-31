@@ -1,6 +1,7 @@
 # product-service
 
 ## Project structure overview
+
 ```bash
 ├── README.md
 ├── TestExampleFile.csv   # test data file, will be used by DataInitializer.java
@@ -29,10 +30,11 @@
         └── resources
             └── application.properties
 ```
+
 from running with: `tree -I 'pgadmin|postgres_data|target|mvnw|mvnw.cmd|HELP.md|test|*.iml' --prune`
 
-
 ## Steps to run
+
 1. go to the database folder and run `docker-compose up -d`
 2. checking the pgAdmin started at `http://localhost:8081/browser/`
 3. execute the `DataInitializer.mian`
