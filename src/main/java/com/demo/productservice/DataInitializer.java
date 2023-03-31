@@ -26,7 +26,8 @@ public class DataInitializer implements CommandLineRunner {
     ProductRepository productRepository;
 
     public static void main(String[] args) {
-        SpringApplication.run(DataInitializer.class, args);
+        SpringApplication.run(DataInitializer.class, args).close();
+        logger.info("Done");
     }
 
     @Override

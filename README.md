@@ -36,7 +36,7 @@ from running with: `tree -I 'pgadmin|postgres_data|target|mvnw|mvnw.cmd|HELP.md|
 ## Steps to run
 
 1. go to the database folder and run `docker-compose up -d`
-2. checking the pgAdmin started at `http://localhost:8081/browser/`
+2. checking the pgAdmin started at `http://localhost:8081/browser/` (host: host.docker.internal, port: 5432, username: root, pasword: 1234, database: test)
 3. execute the `DataInitializer.mian`
 4. checking in pgAdmin data inserted into the product and category table under database test
 5. run the `ProductServiceApplication.mian` to start the product service
