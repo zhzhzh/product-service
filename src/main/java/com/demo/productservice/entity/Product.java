@@ -2,7 +2,7 @@ package com.demo.productservice.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
 
@@ -15,11 +15,11 @@ public class Product {
     @JsonProperty("product_name")
     private String productName;
 
-    @Column(unique=true)
+    @Column(unique=true, length = 10)
     @JsonProperty("product_code")
-    private Integer productCode;
+    private String productCode;
 
-    @CreatedDate
+    @CreationTimestamp
     @JsonProperty("creation_date")
     private Instant creationDate;
 
@@ -30,6 +30,12 @@ public class Product {
 
     public Product() {
 
+    }
+
+    public Product(String productName, String productCode, Category category) {
+        this.productName = productName;
+        this.productCode = productCode;
+        this.category = category;
     }
 
     public Integer getId() {
@@ -48,11 +54,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public Integer getProductCode() {
+    public String getProductCode() {
         return productCode;
     }
 
-    public void setProductCode(Integer productCode) {
+    public void setProductCode(String productCode) {
         this.productCode = productCode;
     }
 
@@ -85,8 +91,9 @@ public class Product {
         return "Product{" +
                 "id=" + id +
                 ", productName='" + productName + '\'' +
-                ", productCode=" + productCode +
+                ", productCode='" + productCode + '\'' +
                 ", creationDate=" + creationDate +
+                ", category=" + category +
                 '}';
     }
 }

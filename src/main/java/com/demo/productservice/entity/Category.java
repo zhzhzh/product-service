@@ -3,7 +3,7 @@ package com.demo.productservice.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
 import java.util.List;
@@ -19,9 +19,9 @@ public class Category {
 
     @Column(unique=true, name = "category_code")
     @JsonProperty("category_code")
-    private String categoryCode;
+    private Integer categoryCode;
 
-    @CreatedDate
+    @CreationTimestamp
     @JsonProperty("creation_date")
     private Instant creationDate;
 
@@ -33,8 +33,7 @@ public class Category {
 
     }
 
-    public Category(String categoryName, String categoryCode) {
-        super();
+    public Category(String categoryName, Integer categoryCode) {
         this.categoryName = categoryName;
         this.categoryCode = categoryCode;
     }
@@ -55,11 +54,11 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    public String getCategoryCode() {
+    public Integer getCategoryCode() {
         return categoryCode;
     }
 
-    public void setCategoryCode(String categoryCode) {
+    public void setCategoryCode(Integer categoryCode) {
         this.categoryCode = categoryCode;
     }
 
@@ -77,5 +76,15 @@ public class Category {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", categoryName='" + categoryName + '\'' +
+                ", categoryCode=" + categoryCode +
+                ", creationDate=" + creationDate +
+                '}';
     }
 }
