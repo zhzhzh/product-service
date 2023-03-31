@@ -1,27 +1,35 @@
 package com.demo.productservice.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
 
-import java.time.LocalDate;
+import java.time.Instant;
 
 @Entity
 public class Product {
     @Id
+    @GeneratedValue
     private Integer id;
+
+    @JsonProperty("product_name")
     private String productName;
+
+    @Column(unique=true)
+    @JsonProperty("product_code")
     private Integer productCode;
-    private Integer categoryCode;
-    private LocalDate creationDate;
 
-//    private Category category;
+    @CreatedDate
+    @JsonProperty("creation_date")
+    private Instant creationDate;
 
-    public Product(Integer id, String productName, Integer productCode, Integer categoryCode, LocalDate creationDate) {
-        this.id = id;
-        this.productName = productName;
-        this.productCode = productCode;
-        this.categoryCode = categoryCode;
-        this.creationDate = creationDate;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="category_code", referencedColumnName="category_code")
+    private Category category;
+
+
+    public Product() {
+
     }
 
     public Integer getId() {
@@ -48,20 +56,28 @@ public class Product {
         this.productCode = productCode;
     }
 
-    public Integer getCategoryCode() {
-        return categoryCode;
-    }
+//    public Integer getCategoryCode() {
+//        return categoryCode;
+//    }
+//
+//    public void setCategoryCode(Integer categoryCode) {
+//        this.categoryCode = categoryCode;
+//    }
 
-    public void setCategoryCode(Integer categoryCode) {
-        this.categoryCode = categoryCode;
-    }
-
-    public LocalDate getCreationDate() {
+    public Instant getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDate creationDate) {
+    public void setCreationDate(Instant creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override
@@ -70,7 +86,6 @@ public class Product {
                 "id=" + id +
                 ", productName='" + productName + '\'' +
                 ", productCode=" + productCode +
-                ", categoryCode='" + categoryCode + '\'' +
                 ", creationDate=" + creationDate +
                 '}';
     }
